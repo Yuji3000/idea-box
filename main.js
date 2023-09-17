@@ -8,8 +8,11 @@ var saveBtn = document.querySelector('.save-button')
 var deleteImage = document.querySelector('#delete-image')
 var cardGrid = document.querySelector('.card-grid')
 
+saveBtn.disabled = true
+
 saveBtn.addEventListener('click', (event) => {
   event.preventDefault()
+  activateSaveBtn()
   createIdeaCard()
 })
 
@@ -66,9 +69,9 @@ function resetInputValues() {
 }
 
 function activateSaveBtn() {
-  if (titleInput.value == "" && bodyInput.value == "") {
+  if (titleInput.value == "" || bodyInput.value == "") {
     saveBtn.disabled = true
-  } else if (titleInput.value !== "" && bodyInput.value !== "") {
+  } else if (titleInput.value && bodyInput.value ) {
     saveBtn.disabled = false
-  }
+  };
 }

@@ -57,6 +57,17 @@ main {
   flex-direction: column;
 }
 
+.save-button {
+  background-color: #1F1F3D;
+  color: #FFFFFF;
+  width: 45%;
+}
+
+.save-button:disabled {
+  background-color: #5356A4;
+  cursor: not-allowed;
+}
+
 .new-ideas-section {
   background-color: #EAEAF4;
   display: flex;
@@ -89,6 +100,7 @@ main {
   font-weight: lighter;
 }
 
+
 .idea-title-body {
   background-color: #FFFFFF;
   height: 82%;
@@ -102,15 +114,9 @@ main {
   display: flex;
   flex-direction: row;
   height: 13%;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin: 0;
   width: 100%;
-}
-
-.save-button {
-  background-color: #1F1F3D;
-  color: #FFFFFF;
-  width: 45%;
 }
 
 .input-title {
