@@ -38,29 +38,35 @@ main {
   font-weight: bold;
   text-align: center;
   color: #FFFFFF;
+  font-size: 70px;
 }
 
-/* Idea section below */
 
+/* Idea section below */
 .main-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
+  align-items: flex-end; 
   height: 50%;
 }
 
 .main-form-section {
   background-color: #A8AAD2;
-  height: 70vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .save-button {
   background-color: #1F1F3D;
   color: #FFFFFF;
-  width: 45%;
+  width: 30vw; 
+  height: 4vw;
+  margin-left: 55px;
+  margin-top: 10px;
+  font-size: 25px;
 }
 
 .save-button:disabled {
@@ -85,10 +91,10 @@ main {
   background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  height: 45vh;
-  width: 25vh;
+  height: 40vh;
+  width: 21vh;
 }
 .idea-title {
   font-size: 30px;
@@ -98,48 +104,64 @@ main {
 .idea-body {
   font-size: 30px;
   font-weight: lighter;
-}
+} 
 
-
-.idea-title-body {
-  background-color: #FFFFFF;
-  height: 82%;
-  overflow: auto;
-  padding-left: 7%;
-  padding-right: 7%;
-  overflow-wrap: break-word;
-}
 .toolbar-images {
   background-color: #1F1F3D;
   display: flex;
   flex-direction: row;
   height: 13%;
-  justify-content: flex-end;
-  margin: 0;
+  justify-content: space-between;
   width: 100%;
 }
+
+.title-section {
+  display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+
 
 .input-title {
   border: 2px solid #5356A4;
   border-radius: 3px;
   color: #1F1F3D;
+  height: 3vh;
+  width: 30vw;
+  margin-left: 10px;
 }
 
 .title-label {
+  font-size: 25px;
   padding-bottom: 3%;
-  padding-top: 10%;
+  padding-top: 5%;
+  font-weight: bold;
 }
+
+.body-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;  
+}
+
+.body-label {
+  font-size: 25px;
+  font-weight: bold;
+  padding-bottom: 3%;
+  padding-top: 7%;
+  margin: auto;
+}
+
 .input-body {
   border: 2px solid #5356A4;
   border-radius: 3px;
   color: #1F1F3D;
   margin-top: 10px;
-  width: 70%;
+  height: 5vh;
+  width: 30vw;
+  margin-left: 10px;
 }
-
-/* .delete:hover {
-  content: url('./assets/delete.svg');
-} */
 
 .card-grid {
   display: grid;
@@ -150,13 +172,6 @@ main {
   padding-top: 2.5%;
 }
 
-.idea-title-body {
-  background-color: #FFFFFF;
-  height: 82%;
-  overflow: auto;
-  padding-left: 7%;
-  padding-right: 7%;
-  overflow-wrap: break-word;
-}
+
 
 

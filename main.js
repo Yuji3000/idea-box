@@ -50,6 +50,7 @@ function displayAllIdeas() {
     return `
     <article class="idea-card" card-id=${idea.id}>
       <div class="toolbar-images">
+        <img class="small-images star" src="./assets/star.svg" id="star-icon">
         <img class="small-images delete" src="./assets/delete-image.svg" id="delete-image">
       </div>
       <div class="idea-title-body">
