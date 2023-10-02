@@ -1,5 +1,6 @@
 [project details](https://frontend.turing.edu/projects/module-1/ideabox-group.html) <br>
-[deployed site!](https://yuji3000.github.io/idea-box/)
+[deployed site link](https://yuji3000.github.io/idea-box/)<br>
+Currently Working On Iteration 4
 
 
 <h2> Iteration 0 </h2>
