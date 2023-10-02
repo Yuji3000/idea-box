@@ -1,5 +1,5 @@
-[project details](https://frontend.turing.edu/projects/module-1/ideabox-group.html)
-[depoloyed Site!](https://yuji3000.github.io/idea-box/)
+[project details](https://frontend.turing.edu/projects/module-1/ideabox-group.html) <br>
+[deployed site!](https://yuji3000.github.io/idea-box/)
 
 
 <h2> Iteration 0 </h2>
