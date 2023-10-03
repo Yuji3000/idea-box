@@ -1,5 +1,6 @@
 var newIdea = new Idea()
 var allIdeas = []
+var starredIdeas = []
 
 
 
@@ -21,33 +22,35 @@ saveBtn.addEventListener('click', (event) => {
 
 titleInput.addEventListener('keyup', activateSaveBtn)
 bodyInput.addEventListener('keyup', activateSaveBtn)
-showStarredIdeasBtn.addEventListener('click', showStarredIdeas)
+showStarredIdeasBtn.addEventListener('click', createStarredIdeas)
 
 // star.addEventListener('click', changeFavoriteStatus)
 
 cardGrid.addEventListener('click', (event) => {
   if (event.target.id === 'delete-image') { 
-    deleteIdeaCard(event)
-    displayIdeas()
+    deleteIdeaCard(allIdeas)
+    deleteIdeaCard(starredIdeas)
+    showStarredIdeas()
   } else if (event.target.id === 'star-icon') {
     changeFavoriteStatus(event)
+    showStarredIdeas()
   }
 });
-//functions
-// (idea => {
-//   return `
+
+function createStarredIdeas() {
+  for(var i = 0; i < allIdeas.length; i++) {
+    if (allIdeas[i].starred == true && starredIdeas.includes(allIdeas[i]) == false) {
+      starredIdeas.push(allIdeas[i])
+    }
+  }
+  showStarredIdeas()
+}
+
 function showStarredIdeas() {
   if (event.target.innerText === "Show Starred Ideas"){
     event.target.innerText = "Show All Ideas"
-    var starredIdeas = []
-    for(var i = 0; i < allIdeas.length; i++) {
-      if (allIdeas[i].starred == true) {
-        starredIdeas.push(allIdeas[i])
-      }
-    }
     displayIdeas(starredIdeas)
   }
-    // console.log(starred)
   else if (event.target.innerText = "Show All Ideas") {
       event.target.innerText = "Show Starred Ideas";
       displayIdeas(allIdeas)
@@ -62,7 +65,7 @@ function changeFavoriteStatus(event) {
       allIdeas[i].changeStatus();
     }
   }
-  displayIdeas(allIdeas)
+  // showStarredIdeas()
 };
 
 function createIdeaCard() {
@@ -74,12 +77,12 @@ function createIdeaCard() {
   displayIdeas(allIdeas)
 }
 
-function deleteIdeaCard(event) {
+function deleteIdeaCard(array) {
   var articleElement = event.target.closest('article');
   var deleteId = articleElement.getAttribute('card-id');
-  for (var i = 0; i < allIdeas.length; i++) {
-    if (allIdeas[i].id == deleteId) {
-      allIdeas.splice(i, 1)
+  for (var i = 0; i < array.length; i++) {
+    if (array[i].id == deleteId) {
+      array.splice(i, 1)
     }
   }
 }
