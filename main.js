@@ -37,14 +37,21 @@ cardGrid.addEventListener('click', (event) => {
 // (idea => {
 //   return `
 function showStarredIdeas() {
-  var starredIdeas = []
-  for(var i = 0; i < allIdeas.length; i++) {
-    if (allIdeas[i].starred == true) {
-      starredIdeas.push(allIdeas[i])
+  if (event.target.innerText === "Show Starred Ideas"){
+    event.target.innerText = "Show All Ideas"
+    var starredIdeas = []
+    for(var i = 0; i < allIdeas.length; i++) {
+      if (allIdeas[i].starred == true) {
+        starredIdeas.push(allIdeas[i])
+      }
     }
+    displayIdeas(starredIdeas)
   }
-  // console.log(starred)
-  displayIdeas(starredIdeas)
+    // console.log(starred)
+  else if (event.target.innerText = "Show All Ideas") {
+      event.target.innerText = "Show Starred Ideas";
+      displayIdeas(allIdeas)
+    }
 }
 
 function changeFavoriteStatus(event) {
