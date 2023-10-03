@@ -9,6 +9,7 @@ var saveBtn = document.querySelector('.save-button')
 var deleteImage = document.querySelector('#delete-image')
 var cardGrid = document.querySelector('.card-grid')
 var star = document.querySelector('#star-icon')
+var showStarredIdeasBtn = document.querySelector('.starred-ideas-btn')
 
 saveBtn.disabled = true
 
@@ -20,17 +21,31 @@ saveBtn.addEventListener('click', (event) => {
 
 titleInput.addEventListener('keyup', activateSaveBtn)
 bodyInput.addEventListener('keyup', activateSaveBtn)
+showStarredIdeasBtn.addEventListener('click', showStarredIdeas)
+
 // star.addEventListener('click', changeFavoriteStatus)
 
 cardGrid.addEventListener('click', (event) => {
   if (event.target.id === 'delete-image') { 
     deleteIdeaCard(event)
-    displayAllIdeas()
+    displayIdeas()
   } else if (event.target.id === 'star-icon') {
     changeFavoriteStatus(event)
   }
 });
 //functions
+// (idea => {
+//   return `
+function showStarredIdeas() {
+  var starredIdeas = []
+  for(var i = 0; i < allIdeas.length; i++) {
+    if (allIdeas[i].starred == true) {
+      starredIdeas.push(allIdeas[i])
+    }
+  }
+  // console.log(starred)
+  displayIdeas(starredIdeas)
+}
 
 function changeFavoriteStatus(event) {
   var articleElement = event.target.closest('article');
@@ -40,7 +55,7 @@ function changeFavoriteStatus(event) {
       allIdeas[i].changeStatus();
     }
   }
-  displayAllIdeas()
+  displayIdeas(allIdeas)
 };
 
 function createIdeaCard() {
@@ -49,7 +64,7 @@ function createIdeaCard() {
   
   newIdea = new Idea(title, body)
   allIdeas.push(newIdea)
-  displayAllIdeas()
+  displayIdeas(allIdeas)
 }
 
 function deleteIdeaCard(event) {
@@ -62,8 +77,8 @@ function deleteIdeaCard(event) {
   }
 }
 
-function displayAllIdeas() {
-  const ideasHTML = allIdeas.map(idea => {
+function displayIdeas(ideas) {
+  const ideasHTML = ideas.map(idea => {
     return `
     <article class="idea-card" card-id=${idea.id}>
       <div class="toolbar-images">
