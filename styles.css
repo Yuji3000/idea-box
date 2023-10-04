@@ -25,6 +25,25 @@ body {
   position: fixed;
 }
 
+.starred-btn-container {
+  display: flex;
+  justify-content: center;
+}
+.starred-ideas-btn {
+  background-color: #A8AAD2;
+  color: #1F1F3C;
+  border: none;
+  font-size: 20px;
+  padding: 3%;
+  height: 50px;
+  font-weight: bold;
+}
+
+.starred-ideas-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 main {
   margin-left: 25vw;
   display: flex;

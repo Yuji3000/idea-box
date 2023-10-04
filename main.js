@@ -1,5 +1,6 @@
 var newIdea = new Idea()
 var allIdeas = []
+var starredIdeas = []
 
 
 
@@ -9,38 +10,63 @@ var saveBtn = document.querySelector('.save-button')
 var deleteImage = document.querySelector('#delete-image')
 var cardGrid = document.querySelector('.card-grid')
 var star = document.querySelector('#star-icon')
+var showStarredIdeasBtn = document.querySelector('.starred-ideas-btn')
 
 saveBtn.disabled = true
 
-saveBtn.addEventListener('click', (event) => {
-  event.preventDefault()
+saveBtn.addEventListener('click', (e) => {
+  e.preventDefault()
   activateSaveBtn()
   createIdeaCard()
 })
 
 titleInput.addEventListener('keyup', activateSaveBtn)
 bodyInput.addEventListener('keyup', activateSaveBtn)
-// star.addEventListener('click', changeFavoriteStatus)
+showStarredIdeasBtn.addEventListener('click', createStarredIdeas)
 
-cardGrid.addEventListener('click', (event) => {
-  if (event.target.id === 'delete-image') { 
-    deleteIdeaCard(event)
-    displayAllIdeas()
-  } else if (event.target.id === 'star-icon') {
-    changeFavoriteStatus(event)
+cardGrid.addEventListener('click', (e) => {
+  if (e.target.id === 'delete-image') { 
+    deleteIdeaCard(allIdeas)
+    deleteIdeaCard(starredIdeas)
+    if (showStarredIdeasBtn.innerText == "Show All Ideas") {
+      displayIdeas(starredIdeas)
+    } else {
+      displayIdeas(allIdeas)
+    }
+  } else if (e.target.id === 'star-icon') {
+    changeFavoriteStatus(e)
+    showStarredIdeas()
   }
 });
-//functions
 
-function changeFavoriteStatus(event) {
-  var articleElement = event.target.closest('article');
+function createStarredIdeas() {
+  for(var i = 0; i < allIdeas.length; i++) {
+    if (allIdeas[i].starred == true && starredIdeas.includes(allIdeas[i]) == false) {
+      starredIdeas.push(allIdeas[i])
+    }
+  }
+  showStarredIdeas()
+}
+
+function showStarredIdeas() {
+  if (event.target.innerText === "Show Starred Ideas"){
+    event.target.innerText = "Show All Ideas"
+    displayIdeas(starredIdeas)
+  }
+  else if (event.target.innerText = "Show All Ideas") {
+      event.target.innerText = "Show Starred Ideas";
+      displayIdeas(allIdeas)
+    }
+}
+
+function changeFavoriteStatus(e) {
+  var articleElement = e.target.closest('article');
   var ideaId = articleElement.getAttribute('card-id');
   for (var i = 0; i < allIdeas.length; i++) {
     if (allIdeas[i].id == ideaId) {
       allIdeas[i].changeStatus();
     }
   }
-  displayAllIdeas()
 };
 
 function createIdeaCard() {
@@ -49,21 +75,21 @@ function createIdeaCard() {
   
   newIdea = new Idea(title, body)
   allIdeas.push(newIdea)
-  displayAllIdeas()
+  displayIdeas(allIdeas)
 }
 
-function deleteIdeaCard(event) {
+function deleteIdeaCard(ideas) {
   var articleElement = event.target.closest('article');
-  var deleteId = articleElement.getAttribute('card-id');
-  for (var i = 0; i < allIdeas.length; i++) {
-    if (allIdeas[i].id == deleteId) {
-      allIdeas.splice(i, 1)
+  let deleteId = articleElement.getAttribute('card-id');
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id == deleteId) {
+      ideas.splice(i, 1)
     }
   }
 }
 
-function displayAllIdeas() {
-  const ideasHTML = allIdeas.map(idea => {
+function displayIdeas(ideas) {
+  const ideasHTML = ideas.map(idea => {
     return `
     <article class="idea-card" card-id=${idea.id}>
       <div class="toolbar-images">
@@ -99,5 +125,5 @@ function activateSaveBtn() {
     saveBtn.disabled = true
   } else if (titleInput.value && bodyInput.value ) {
     saveBtn.disabled = false
-  };
+  }
 }
