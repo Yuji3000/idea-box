@@ -95,32 +95,43 @@ main {
 
 .new-ideas-section {
   background-color: #EAEAF4;
-  display: flex;
-	justify-content: flex-start;
 }
 
 .card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .idea-card {
   border-style: solid;
   border-color: #1F1F3C;
   background-color: #FFFFFF;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
   height: 40vh;
-  width: 21vh;
+  width: 30vh;
 }
+
 .idea-title {
+  position: relative;
+  text-align: center;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: clip;
   font-size: 30px;
   font-weight: bolder;
+  margin-top: 2px;
 }
 
 .idea-body {
+  position: relative;
+  text-align: center;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: clip;
   font-size: 30px;
   font-weight: lighter;
 } 
@@ -133,14 +144,6 @@ main {
   justify-content: space-between;
   width: 100%;
 }
-
-.title-section {
-  display: flex;
-	flex-direction: row;
-	align-items: center;
-}
-
-
 
 .input-title {
   border: 2px solid #5356A4;
