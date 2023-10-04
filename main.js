@@ -14,8 +14,8 @@ var showStarredIdeasBtn = document.querySelector('.starred-ideas-btn')
 
 saveBtn.disabled = true
 
-saveBtn.addEventListener('click', (event) => {
-  event.preventDefault()
+saveBtn.addEventListener('click', (e) => {
+  e.preventDefault()
   activateSaveBtn()
   createIdeaCard()
 })
@@ -24,15 +24,17 @@ titleInput.addEventListener('keyup', activateSaveBtn)
 bodyInput.addEventListener('keyup', activateSaveBtn)
 showStarredIdeasBtn.addEventListener('click', createStarredIdeas)
 
-// star.addEventListener('click', changeFavoriteStatus)
-
-cardGrid.addEventListener('click', (event) => {
-  if (event.target.id === 'delete-image') { 
+cardGrid.addEventListener('click', (e) => {
+  if (e.target.id === 'delete-image') { 
     deleteIdeaCard(allIdeas)
     deleteIdeaCard(starredIdeas)
-    showStarredIdeas()
-  } else if (event.target.id === 'star-icon') {
-    changeFavoriteStatus(event)
+    if (showStarredIdeasBtn.innerText == "Show All Ideas") {
+      displayIdeas(starredIdeas)
+    } else {
+      displayIdeas(allIdeas)
+    }
+  } else if (e.target.id === 'star-icon') {
+    changeFavoriteStatus(e)
     showStarredIdeas()
   }
 });
@@ -57,15 +59,14 @@ function showStarredIdeas() {
     }
 }
 
-function changeFavoriteStatus(event) {
-  var articleElement = event.target.closest('article');
+function changeFavoriteStatus(e) {
+  var articleElement = e.target.closest('article');
   var ideaId = articleElement.getAttribute('card-id');
   for (var i = 0; i < allIdeas.length; i++) {
     if (allIdeas[i].id == ideaId) {
       allIdeas[i].changeStatus();
     }
   }
-  // showStarredIdeas()
 };
 
 function createIdeaCard() {
@@ -77,12 +78,12 @@ function createIdeaCard() {
   displayIdeas(allIdeas)
 }
 
-function deleteIdeaCard(array) {
+function deleteIdeaCard(ideas) {
   var articleElement = event.target.closest('article');
-  var deleteId = articleElement.getAttribute('card-id');
-  for (var i = 0; i < array.length; i++) {
-    if (array[i].id == deleteId) {
-      array.splice(i, 1)
+  let deleteId = articleElement.getAttribute('card-id');
+  for (var i = 0; i < ideas.length; i++) {
+    if (ideas[i].id == deleteId) {
+      ideas.splice(i, 1)
     }
   }
 }
@@ -124,5 +125,5 @@ function activateSaveBtn() {
     saveBtn.disabled = true
   } else if (titleInput.value && bodyInput.value ) {
     saveBtn.disabled = false
-  };
+  }
 }
